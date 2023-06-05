@@ -14,7 +14,7 @@ import seaborn as sns
  
 
 # import dataset
-df = pd.read_excel('Dry_Bean_Dataset.xlsx')
+df = pd.read_excel('Documentation/Dry_Bean_Dataset.xlsx')
 df.head(10)
 df.info()
 df.isnull().sum()
@@ -69,11 +69,14 @@ print('X Shape is ' , X.shape)
 print('Selected Features are : ' , S )
 
 
-# First classifier LogisitcRegressionModel 
+ 
 from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X,y, train_size = 0.9, shuffle = 'True')
+
+# First classifier LogisitcRegressionModel
 from sklearn.linear_model import LogisticRegression
 
-X_train, X_test, y_train, y_test = train_test_split(X,y, train_size = 0.9, shuffle = 'True')
+
 
 LogisticRegressionModel = LogisticRegression(C=1, solver='newton-cg', class_weight='balanced', multi_class='multinomial',
                             fit_intercept=True, max_iter=100, random_state=44)
@@ -81,7 +84,10 @@ LogisticRegressionModel.fit(X_train, y_train)
 
 print('LogisiticRegressionModel Train Score is: ', LogisticRegressionModel.score(X_train, y_train))
 print('LogisiticRegressionModel Test Score is: ', LogisticRegressionModel.score(X_test, y_test))
-
+# =============================================================================
+# LogisiticRegressionModel Train Score is:  0.9138705200424524
+# LogisiticRegressionModel Test Score is:  0.9236417033773862
+# =============================================================================
 
 # Second classifier DecisionTreeClassifierModel
 from sklearn.tree import DecisionTreeClassifier
@@ -91,7 +97,10 @@ DecisionTreeClassifierModel.fit(X_train, y_train)
 
 print('DecisionTreeClassifierModel Train Score is: ' , DecisionTreeClassifierModel.score(X_train, y_train))
 print('DecisionTreeClassifierModel Test Score is: ' , DecisionTreeClassifierModel.score(X_test, y_test))
-
+# =============================================================================
+# DecisionTreeClassifierModel Train Score is:  0.9633439464446077
+# DecisionTreeClassifierModel Test Score is:  0.8935389133627019
+# =============================================================================
 
 # Thrid Classifier Support Vector Machine
 from sklearn.svm import SVC
@@ -102,7 +111,10 @@ clf.fit(X_train, y_train)
   
 print('Support Vector Machine Train Score is: ' , clf.score(X_train, y_train))
 print('Support Vector Machine Test Score is: ' , clf.score(X_test, y_test))
-
+# =============================================================================
+# Support Vector Machine Train Score is:  0.9160462382445141
+# Support Vector Machine Test Score is:  0.9180135174845724
+# =============================================================================
 
 
 
